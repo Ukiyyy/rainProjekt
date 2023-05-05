@@ -28,11 +28,12 @@ class Paketnik
 
     }
 
-    public static function izbrisi($paketnikId)
+    public static function zbrisi($paketnikId, $db)
     {
-        $db = Db::getInstance();
+        //$db = Db::getInstance();
+        $qs = "DELETE FROM paketnik WHERE paketnikid = '$paketnikId'";
 
-        if (mysqli_query($db, "DELETE FROM paketnik WHERE paketnikId = '$paketnikId'")) {
+        if (mysqli_query($db, $qs)) {
             echo "Paketnik z ID-jem '$paketnikId' uspešno izbrisan";
         } else {
             echo "Napaka";

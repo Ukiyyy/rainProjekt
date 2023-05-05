@@ -1,1 +1,1 @@
-<p>Uspesno dodan paketnik</p>
+<p>Akcija je bila uspesno izvedena</p>

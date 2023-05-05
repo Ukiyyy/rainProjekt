@@ -31,10 +31,10 @@ if(isset($request[0])&&($request[0]=='user')){
 if(isset($request[0])&&($request[0]=='paketnik')) {
     switch ($method) {
         case 'DELETE':
-            //http://localhost/PametniPaketnikInternet/api.php/paketnik/paketnikId
-            if(isset($request[1])) {
-                $paketnikId = $request[1];
-                Paketnik::izbrisi($paketnikId);
+            parse_str(file_get_contents('php://input'), $input);
+            if(isset($input) && isset($request[1]) && $request[1] == 'zbrisi') {
+                $paketnikId = $input["paketnikId"];
+                Paketnik::zbrisi($paketnikId, $db);
             }
             break;
         case 'POST':

@@ -24,6 +24,7 @@
             <ul class="navbar-nav ms-auto">
                 <li><a class="nav-link" href="index.php?controller=paketnik&action=zgo">Zgodovina</a></li>
                 <li><a class="nav-link" href="index.php?controller=paketnik&action=dodajPaketnik">Dodaj</a></li>
+                <li><a class="nav-link" href="index.php?controller=paketnik&action=zbrisiPaketnik">Izbrisi</a></li>
             </ul>
         </ul>
         <ul class="navbar-nav nav navbar-right">

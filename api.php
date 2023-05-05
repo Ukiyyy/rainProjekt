@@ -1,6 +1,7 @@
 <?php
 
 include "models/user.php";
+include "models/paketnik.php";
 
 
 $method = $_SERVER["REQUEST_METHOD"];
@@ -24,6 +25,23 @@ if(isset($request[0])&&($request[0]=='user')){
             if (isset($input) && isset($request[1]) && $request[1] == 'login' ) {
                 $user = User::login($input["username"],$input["password"], $db);
                 echo json_encode($user);
+            }
+    }
+}
+if(isset($request[0])&&($request[0]=='paketnik')) {
+    switch ($method) {
+        case 'DELETE':
+            //http://localhost/PametniPaketnikInternet/api.php/paketnik/paketnikId
+            if(isset($request[1])) {
+                $paketnikId = $request[1];
+                Paketnik::izbrisi($paketnikId);
+            }
+            break;
+        case 'POST':
+            parse_str(file_get_contents('php://input'), $input);
+            if(isset($input) && isset($request[1]) && $request[1] == 'dodaj' ) {
+                $paketnik = new paketnik($input["paketnikId"],0);
+                $paketnik->dodaj($db);
             }
     }
 }

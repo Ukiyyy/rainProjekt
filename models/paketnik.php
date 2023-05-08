@@ -39,4 +39,27 @@ class Paketnik
             echo "Napaka";
         }
     }
+
+
+    public function spremeni($paketnikId ,$db)
+    {
+        if ($_POST["paketnikId"] != "" && $_POST["imePaketnika"] != "") {
+
+            $imePaketnika = $_POST["imePaketnika"];
+
+            // Update the name of the Paketnik in the database
+            $qs = "UPDATE paketnik SET paketnikid = '$paketnikId' WHERE paketnikid = '$paketnikId'";
+            $result = mysqli_query($db, $qs);
+
+            if (mysqli_error($db)) {
+                var_dump(mysqli_error($db));
+                exit();
+            }
+
+            echo "Ime paketnika uspešno spremenjeno";
+        } else {
+            echo "Neuspešna sprememba imena paketnika";
+        }
+    }
+
 }

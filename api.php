@@ -43,5 +43,15 @@ if(isset($request[0])&&($request[0]=='paketnik')) {
                 $paketnik = new paketnik($input["paketnikId"],0);
                 $paketnik->dodaj($db);
             }
+        case 'PUT':
+            parse_str(file_get_contents('php://input'), $input);
+            if(isset($input) && isset($request[1]) && $request[1] == 'spremeni') {
+                $paketnikId = $input["paketnikId"];
+                $novoIme = $input["novoIme"];
+                $paketnik = new Paketnik($paketnikId);
+                $paketnik->spremeni($paketnikId,$db);
+            }
+            break;
+
     }
 }

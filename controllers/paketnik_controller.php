@@ -54,5 +54,14 @@ class paketnik_controller {
             echo "neuspesno izbrisan paketnik";
         }
     }
+
+    public function spremeniIme() {
+        require_once ('views/paketnik/spremeniImePaketnik.php');
+    }
+
+    public function spremeni()
+    {
+
+    }
 }
 ?>

@@ -41,14 +41,13 @@ class Paketnik
     }
 
 
-    public function spremeni($paketnikId ,$db)
+    public function spremeni($novoIme,$db,$paketnikId)
     {
         if ($_POST["paketnikId"] != "" && $_POST["imePaketnika"] != "") {
-
-            $imePaketnika = $_POST["imePaketnika"];
+            //$paketnikId = $_POST["paketnikId"];
 
             // Update the name of the Paketnik in the database
-            $qs = "UPDATE paketnik SET paketnikid = '$paketnikId' WHERE paketnikid = '$paketnikId'";
+            $qs = "UPDATE paketnik SET imePaketnika = '$novoIme' WHERE paketnikid = '$paketnikId'";
             $result = mysqli_query($db, $qs);
 
             if (mysqli_error($db)) {

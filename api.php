@@ -48,8 +48,7 @@ if(isset($request[0])&&($request[0]=='paketnik')) {
             if(isset($input) && isset($request[1]) && $request[1] == 'spremeni') {
                 $paketnikId = $input["paketnikId"];
                 $novoIme = $input["novoIme"];
-                $paketnik = new Paketnik($paketnikId);
-                $paketnik->spremeni($paketnikId,$db);
+                $paketnik->spremeni($novoIme,$db,$paketnikId);
             }
             break;
 

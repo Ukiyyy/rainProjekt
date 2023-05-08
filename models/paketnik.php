@@ -13,7 +13,7 @@ class Paketnik
 
     public function dodaj($db)
     {
-        $id=$this->id;
+        $id = $this->id;
         $paketnikId = $this->paketnikId;
         //$db = Db::getInstance();
         $qs = "INSERT INTO paketnik (id,paketnikid) VALUES ($id,'$paketnikId')";
@@ -41,24 +41,19 @@ class Paketnik
     }
 
 
-    public function spremeni($novoIme,$db,$paketnikId)
+    public function spremeni($novoIme, $db, $paketnikId)
     {
-        if ($_POST["paketnikId"] != "" && $_POST["imePaketnika"] != "") {
-            //$paketnikId = $_POST["paketnikId"];
+        //$paketnikId = $_POST["paketnikId"];
 
-            // Update the name of the Paketnik in the database
-            $qs = "UPDATE paketnik SET imePaketnika = '$novoIme' WHERE paketnikid = '$paketnikId'";
-            $result = mysqli_query($db, $qs);
+        // Update the name of the Paketnik in the database
+        $qs = "UPDATE paketnik SET paketnikid = '$novoIme' WHERE paketnikid = '$paketnikId'";
 
-            if (mysqli_error($db)) {
-                var_dump(mysqli_error($db));
-                exit();
-            }
-
-            echo "Ime paketnika uspešno spremenjeno";
+        if (mysqli_query($db, $qs)) {
+            echo "Paketnik z ID-jem '$paketnikId' uspešno izbrisan";
         } else {
-            echo "Neuspešna sprememba imena paketnika";
+            echo "Napaka";
         }
+
     }
 
 }

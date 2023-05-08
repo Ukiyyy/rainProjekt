@@ -63,8 +63,8 @@ class paketnik_controller {
     {
         if($_POST["paketnikId"]!="") {
             $url = 'http://localhost/rainPro/api.php/paketnik/spremeni';
-            $data = array('paketnikId' => $_POST["paketnikId"]);
-            $data['imePaketnika'] = $_POST["imePaketnika"];
+            $data = array('paketnikId' => $_POST["paketnikId"], 'novoIme' => $_POST["novoIme"]);
+            //$data['imePaketnika'] = $_POST["imePaketnika"];
 
             $options = array(
                 'http' => array(
@@ -81,7 +81,7 @@ class paketnik_controller {
             require_once('views/strani/uspesno.php');
         }
         else{
-            echo "neuspesno spremenitev imena paketnik";
+            echo "neuspesna spremenitev imena paketnik";
         }
     }
 }

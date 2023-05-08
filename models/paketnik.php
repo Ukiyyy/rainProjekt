@@ -56,4 +56,19 @@ class Paketnik
 
     }
 
+    public function posodi($idUser, $db, $idPaketnik)
+    {
+        //$paketnikId = $_POST["paketnikId"];
+
+        // Update the name of the Paketnik in the database
+        $qs = "UPDATE user SET access = '$idPaketnik' WHERE id = '$idUser'";
+
+        if (mysqli_query($db, $qs)) {
+            echo "User '$idUser' uspešno dobil praviec";
+        } else {
+            echo "Napaka";
+        }
+
+    }
+
 }

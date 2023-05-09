@@ -94,7 +94,7 @@ class paketnik_controller {
     {
         if($_POST["paketnikId"]!="") {
             $url = 'http://localhost/rainPro/api.php/paketnik/posodi';
-            $data = array('paketnikId' => $_POST["paketnikId"], 'novoIme' => $_POST["novoIme"]);
+            $data = array('paketnikId' => $_POST["paketnikId"], 'novoIme' => $_POST["uporabnikId"]);
             //$data['imePaketnika'] = $_POST["imePaketnika"];
 
             $options = array(

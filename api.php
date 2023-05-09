@@ -67,6 +67,13 @@ if(isset($request[0])&&($request[0]=='paketnik')) {
                 $novoIme = $input["novoIme"];
                 Paketnik::spremeni($novoIme,$db,$paketnikId);
             }
+
+            parse_str(file_get_contents('php://input'), $input);
+            if(isset($input) && isset($request[1]) && $request[1] == 'posodi') {
+                $paketnikId = $input["paketnikId"];
+                $novoIme = $input["uporabnikId"];
+                Paketnik::posodi($novoIme,$db,$paketnikId);
+            }
             break;
         case 'GET':
             parse_str(file_get_contents('php://input'), $input);

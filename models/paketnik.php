@@ -61,7 +61,7 @@ class Paketnik
         //$paketnikId = $_POST["paketnikId"];
 
         // Update the name of the Paketnik in the database
-        $qs = "UPDATE user SET access = '$idPaketnik' WHERE id = '$idUser'";
+        $qs = "UPDATE user_paketnik SET owner = '1' WHERE name = '$idUser'";
 
         if (mysqli_query($db, $qs)) {
             echo "User '$idUser' uspešno dobil praviec";

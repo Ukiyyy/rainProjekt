@@ -51,6 +51,15 @@ if(isset($request[0])&&($request[0]=='paketnik')) {
                 $novoIme = $input["novoIme"];
                 Paketnik::spremeni($novoIme,$db,$paketnikId);
             }
+            else if(isset($input) && isset($request[1]) && $request[1] == 'odkleni') {
+                $input_data = json_decode(file_get_contents('php://input'), true);
+                $paketnikId = $input_data['paketnikId'];
+                $userId = $input_data['userId'];
+                $date = date('Y-m-d H:i:s');
+                $paketnik = new Paketnik($paketnikId);
+                $paketnik->odkleni($userId, $date, $db);
+            }
+
             break;
     }
 }

@@ -14,6 +14,17 @@ else
 
 $db = mysqli_connect("sql7.freemysqlhosting.net", "sql7616003", "AQvIh4ifwr", "sql7616003");//Db::getInstance();
 
+if(isset($request[0])&&($request[0]=='logs')){
+    switch ($method) {
+        case 'POST':
+            parse_str(file_get_contents('php://input'), $input);
+            if (isset($input) && isset($request[1]) && $request[1] == 'odkleni' ) {
+                $logs = new logs($input["paketnikId"], $input["userId"],$input["date"],0);
+                //$paketnikId = $input["paketnikId"];
+                $logs->odkleni($db);
+            }
+    }
+}
 if(isset($request[0])&&($request[0]=='user')){
     switch ($method) {
         case 'POST':
@@ -39,6 +50,11 @@ if(isset($request[0])&&($request[0]=='paketnik')) {
             break;
         case 'POST':
             parse_str(file_get_contents('php://input'), $input);
+            if(isset($input) && isset($request[1]) && $request[1] == 'odkleni') {
+                //$input_data = json_decode(file_get_contents('php://input'), true);
+                $paketnikId = $input['paketnikId'];
+                Paketnik::odkleni($paketnikId, $db);
+            }
             if(isset($input) && isset($request[1]) && $request[1] == 'dodaj' ) {
                 $paketnik = new paketnik($input["paketnikId"],0);
                 $paketnik->dodaj($db);
@@ -53,6 +69,7 @@ if(isset($request[0])&&($request[0]=='paketnik')) {
             }
             break;
         case 'GET':
+            parse_str(file_get_contents('php://input'), $input);
             if(isset($request[1]) && $request[1] == 'zgodovina') {
                 $paketnikId = $_GET['paketnikId'];
                 $results = Paketnik::zgo($paketnikId, $db);

@@ -12,7 +12,8 @@ function call($controller, $action) {
 
 $controllers = array('strani' => ['index','napaka'],
     'user' => ['prijava', 'odjava','registracija','shrani'],
-    'paketnik' => ['zgo', 'dodajPaketnik', 'shrani', 'zbrisi', 'zbrisiPaketnik', 'spremeniIme','spremeniImePaketnik','spremeni','posodiKljuc','odkleni','odkleniPaketnik','zgo','zgodovina']);
+    'paketnik' => ['zgo', 'dodajPaketnik', 'shrani', 'zbrisi', 'zbrisiPaketnik', 'spremeniIme','spremeniImePaketnik','spremeni','posodiKljuc','zgo','zgodovina'],
+    'logs' => ['odkleni', 'odkleniPaketnik']);
 
 
 

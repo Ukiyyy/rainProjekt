@@ -116,7 +116,7 @@ class paketnik_controller {
         }
     }
     public function odkleni(){
-        require_once ('views/paketnik/odkleniPaketnik.php');
+        require_once('views/logs/odkleniPaketnik.php');
     }
     public function odkleniPaketnik()
     {
@@ -127,7 +127,7 @@ class paketnik_controller {
             $options = array(
                 'http' => array(
                     'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-                    'method' => 'GET',
+                    'method' => 'POST',
                     'content' => http_build_query($data)
                 )
             );

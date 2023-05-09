@@ -120,14 +120,14 @@ class paketnik_controller {
     }
     public function odkleniPaketnik()
     {
-        if($_POST["paketnikId"]!="") {
+        if ($_POST["paketnikId"] != "") {
             $url = 'http://localhost/rainPro/api.php/paketnik/odkleni';
             $data = array('paketnikId' => $_POST["paketnikId"]);
 
             $options = array(
                 'http' => array(
                     'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-                    'method' => 'PUT',
+                    'method' => 'DELETE',
                     'content' => http_build_query($data)
                 )
             );
@@ -137,13 +137,36 @@ class paketnik_controller {
                 die();
             }
             require_once('views/strani/uspesno.php');
-        }
-        else{
-            echo "neuspesno odklepanje";
+        } else {
+            echo "neuspesno izbrisan paketnik";
         }
     }
     public function zgo(){
-        require_once ('views/paketnik/odkleniPaketnik.php');
+        require_once ('views/paketnik/getIdZgoPaketnik.php');
     }
+    public function zgodovina()
+    {
+        if ($_POST["paketnikId"] != "") {
+            $url = 'http://localhost/rainPro/api.php/paketnik/zgo';
+            $data = array('paketnikId' => $_POST["paketnikId"]);
+
+            $options = array(
+                'http' => array(
+                    'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+                    'method' => 'DELETE',
+                    'content' => http_build_query($data)
+                )
+            );
+            $context = stream_context_create($options);
+            $result = file_get_contents($url, false, $context);
+            if ($result === FALSE) {
+                die();
+            }
+            require_once('views/paketnik/zgodovinaPaketnik.php');
+        } else {
+            echo "neuspesno izbrisan paketnik";
+        }
+    }
+
 }
 ?>

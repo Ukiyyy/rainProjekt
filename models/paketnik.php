@@ -103,7 +103,24 @@ class Paketnik
 
         echo "Paketnik uspešno odklenjen";
     }
+    public function zgo($paketnikId, $db)
+    {
+        $qs = "SELECT * FROM logs WHERE paketnikid = '$paketnikId'";
+        $result = mysqli_query($db, $qs);
 
+        if (!$result) {
+            echo "Napaka pri pridobivanju logov";
+            return;
+        }
+
+        // Process the result set and return the rows as an array of associative arrays
+        $rows = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $rows[] = $row;
+        }
+
+        return $rows;
+    }
 
 
 }

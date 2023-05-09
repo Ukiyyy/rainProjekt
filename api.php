@@ -54,10 +54,12 @@ if(isset($request[0])&&($request[0]=='paketnik')) {
             else if(isset($input) && isset($request[1]) && $request[1] == 'odkleni') {
                 $input_data = json_decode(file_get_contents('php://input'), true);
                 $paketnikId = $input_data['paketnikId'];
-                $userId = $input_data['userId'];
-                $date = date('Y-m-d H:i:s');
-                $paketnik = new Paketnik($paketnikId);
-                $paketnik->odkleni($userId, $date, $db);
+                Paketnik::odkleni($paketnikId, $db);
+            }
+            else if(isset($input) && isset($request[1]) && $request[1] == 'zgodovina') {
+                $input_data = json_decode(file_get_contents('php://input'), true);
+                $paketnikId = $input_data['paketnikId'];
+                Paketnik::zgo($paketnikId, $db);
             }
 
             break;

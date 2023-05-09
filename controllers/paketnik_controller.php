@@ -127,7 +127,7 @@ class paketnik_controller {
             $options = array(
                 'http' => array(
                     'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-                    'method' => 'DELETE',
+                    'method' => 'GET',
                     'content' => http_build_query($data)
                 )
             );
@@ -147,13 +147,13 @@ class paketnik_controller {
     public function zgodovina()
     {
         if ($_POST["paketnikId"] != "") {
-            $url = 'http://localhost/rainPro/api.php/paketnik/zgo';
+            $url = 'http://localhost/rainPro/api.php/paketnik/zgodovina';
             $data = array('paketnikId' => $_POST["paketnikId"]);
 
             $options = array(
                 'http' => array(
                     'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-                    'method' => 'DELETE',
+                    'method' => 'GET',
                     'content' => http_build_query($data)
                 )
             );

@@ -51,17 +51,18 @@ if(isset($request[0])&&($request[0]=='paketnik')) {
                 $novoIme = $input["novoIme"];
                 Paketnik::spremeni($novoIme,$db,$paketnikId);
             }
+            break;
+        case 'GET':
+            if(isset($request[1]) && $request[1] == 'zgodovina') {
+                $paketnikId = $_GET['paketnikId'];
+                $results = Paketnik::zgo($paketnikId, $db);
+                require_once ('views/paketnik/zgodovinaPaketnik.php');
+            }
             else if(isset($input) && isset($request[1]) && $request[1] == 'odkleni') {
                 $input_data = json_decode(file_get_contents('php://input'), true);
                 $paketnikId = $input_data['paketnikId'];
                 Paketnik::odkleni($paketnikId, $db);
             }
-            else if(isset($input) && isset($request[1]) && $request[1] == 'zgodovina') {
-                $input_data = json_decode(file_get_contents('php://input'), true);
-                $paketnikId = $input_data['paketnikId'];
-                Paketnik::zgo($paketnikId, $db);
-            }
-
             break;
     }
 }

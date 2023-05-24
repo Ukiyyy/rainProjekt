@@ -16,15 +16,16 @@ class Logs
     }
     public function odkleni($db)
     {
-        $userId = $_SESSION['user_id'];
+        $userId = 3;
+        //$userId = $_SESSION['user_id'];
         $id = $this->id;
         $paketnikId = $this->paketnikId;
         //$userId = $this->userId;
         $date = date("Y-m-d");
 
         // Insert a new row into the logs table
-        //$qs = "INSERT INTO logs (id,date,userId, paketnikid) VALUES (NULL, '2000:05:03',2,3)";
-        $qs = "INSERT INTO logs (id,date,userId, paketnikId) VALUES ($id,'$date''$userId', '$paketnikId');";
+        $qs = "INSERT INTO logs (id,date,userId, paketnikid) VALUES (NULL, '2000-05-03',2,3)";
+        //$qs = "INSERT INTO logs (id,date,userId, paketnikId) VALUES ($id,'$date','$userId', '$paketnikId');";
         $result = mysqli_query($db, $qs);
 
         if (mysqli_error($db)) {

@@ -8,7 +8,7 @@ class paketnik_controller {
     public function shrani() {
         if($_POST["paketnikId"]!="") {
             $url = 'http://localhost/rainPro/api.php/paketnik/dodaj';
-            $data = array('paketnikId' => $_POST["paketnikId"]);
+            $data = array('paketnikId' => $_POST["paketnikId"], 'userid' => $_SESSION["USER_ID"]);
 
             $options = array(
                 'http' => array(

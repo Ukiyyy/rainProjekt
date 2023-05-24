@@ -1,5 +1,5 @@
 <?php
-
+$uid = "";
 class User
 {
     public $id;
@@ -27,14 +27,12 @@ class User
     public function dodaj($db)
     {
         $id = $this->id;
+        $uid = $id;
         $username = $this->username;
         $password = sha1($this->password);
         $email = $this->email;
         $qs = "INSERT INTO user (id,username,password,email) VALUES ($id,'$username','$password','$email');";
-        /*if($this->username_exists($username, $db)){
-            echo "username ze obstaja";
-        }
-        else {*/
+
         $result = mysqli_query($db, $qs);
 
         if (mysqli_error($db)) {
@@ -42,7 +40,7 @@ class User
             exit();
         }
         $this->id = mysqli_insert_id($db);
-        //}
+
     }
 
     public static function login($username, $password, $db)

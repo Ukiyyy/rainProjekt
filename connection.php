@@ -5,7 +5,7 @@ class Db {
 
     public static function getInstance() {
         if (!isset(self::$instance)) {
-            self::$instance = mysqli_connect("sql7.freemysqlhosting.net", "sql7616003", "AQvIh4ifwr", "sql7616003");
+            self::$instance = mysqli_connect("mongodb+srv://rainPro:rainPro@rainpro.jvnwmyh.mongodb.net/", "rainPro", "rainPro", "rainPro");
         }
         return self::$instance;
     }

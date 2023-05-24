@@ -1,5 +1,6 @@
 <?php
 include "models/user.php";
+$uid = 2;
 class user_controller {
     public function registracija() {
         require_once('views/user/registracija.php');
@@ -52,7 +53,7 @@ class user_controller {
 
             $uporabnik = new User($obj->{"id"}, $obj->{"username"}, $obj->{"password"}, $obj->{"email"});
             if($uporabnik){
-                $_SESSION["USER_ID"] = $uporabnik->id;
+                $_SESSION["USER_ID"] = $uporabnik->username;
                 $_SESSION["USER"] = $uporabnik;
                 header("Location: index.php");
             }else{

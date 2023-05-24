@@ -1,3 +1,11 @@
+<?php
+session_start();
+//Seja poteče po 30 minutah - avtomatsko odjavi neaktivnega uporabnika
+if(isset($_SESSION['LAST_ACTIVITY']) && time() - $_SESSION['LAST_ACTIVITY'] < 1800){
+    session_regenerate_id(true);
+}
+$_SESSION['LAST_ACTIVITY'] = time();
+?>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -17,7 +25,6 @@
             <li class="nav-item">
             <li><a class="nav-link" href="index.php">Domov</a></li>
             <?php
-            session_start();
             if (isset($_SESSION["USER_ID"])){
 
             ?>

@@ -4,19 +4,22 @@ class Paketnik
 {
     public $id;
     public $paketnikId;
+    public $userid;
 
-    public function __construct($paketnikId, $id = 0)
+    public function __construct($userid, $paketnikId, $id = 0)
     {
         $this->id = $id;
         $this->paketnikId = $paketnikId;
+        $this->userid = $userid;
     }
 
     public function dodaj($db)
     {
         $id = $this->id;
         $paketnikId = $this->paketnikId;
-        //$db = Db::getInstance();
-        $qs = "INSERT INTO paketnik (id,paketnikid) VALUES ($id,'$paketnikId')";
+        $userid = $this->userid;
+
+        $qs = "INSERT INTO paketnik (id,name,userid) VALUES ($id,'$paketnikId', '$userid')";
         $result = mysqli_query($db, $qs);
 
         if (mysqli_error($db)) {
@@ -31,7 +34,7 @@ class Paketnik
     public static function zbrisi($paketnikId, $db)
     {
         //$db = Db::getInstance();
-        $qs = "DELETE FROM paketnik WHERE paketnikid = '$paketnikId'";
+        $qs = "DELETE FROM paketnik WHERE name = '$paketnikId'";
 
         if (mysqli_query($db, $qs)) {
             echo "Paketnik z ID-jem '$paketnikId' uspešno izbrisan";
@@ -46,7 +49,7 @@ class Paketnik
         //$paketnikId = $_POST["paketnikId"];
 
         // Update the name of the Paketnik in the database
-        $qs = "UPDATE paketnik SET paketnikid = '$novoIme' WHERE paketnikid = '$paketnikId'";
+        $qs = "UPDATE paketnik SET name = '$novoIme' WHERE name = '$paketnikId'";
 
         if (mysqli_query($db, $qs)) {
             echo "Paketnik z ID-jem '$paketnikId' uspešno izbrisan";

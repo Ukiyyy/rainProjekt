@@ -10,7 +10,7 @@ class logs_controller {
     {
         if ($_POST["paketnikId"] != "") {
             $url = 'http://localhost/rainPro/api.php/logs/odkleni';
-            $data = array('paketnikId' => $_POST["paketnikId"],'userId' => 2, 'date' => date("Y-m-d"));
+            $data = array('paketnikId' => "feri",'userId' => 2, 'date' => date("Y-m-d"));
 
             $options = array(
                 'http' => array(

@@ -2,6 +2,7 @@
 
 include "models/user.php";
 include "models/paketnik.php";
+include "models/logs.php";
 
 
 $method = $_SERVER["REQUEST_METHOD"];
@@ -12,14 +13,15 @@ if(isset($_SERVER['PATH_INFO']))
 else
     $request="";
 
-$db = mysqli_connect("sql7.freemysqlhosting.net", "sql7616003", "AQvIh4ifwr", "sql7616003");//Db::getInstance();
+$db = mysqli_connect("sql7.freemysqlhosting.net", "sql7620703", "syRmuGc8Zd", "sql7620703");//Db::getInstance();
 
 if(isset($request[0])&&($request[0]=='logs')){
     switch ($method) {
         case 'POST':
             parse_str(file_get_contents('php://input'), $input);
             if (isset($input) && isset($request[1]) && $request[1] == 'odkleni' ) {
-                $logs = new logs($input["paketnikId"], $input["userId"],$input["date"],0);
+                //$logs = new logs($input["paketnikId"], $input["userId"],$input["date"],0);
+                $logs = new logs(3, 3, "2000-05-05",0);
                 //$paketnikId = $input["paketnikId"];
                 $logs->odkleni($db);
             }
@@ -56,7 +58,7 @@ if(isset($request[0])&&($request[0]=='paketnik')) {
                 Paketnik::odkleni($paketnikId, $db);
             }
             if(isset($input) && isset($request[1]) && $request[1] == 'dodaj' ) {
-                $paketnik = new paketnik($input["paketnikId"],0);
+                $paketnik = new paketnik($input["userid"],$input["paketnikId"],0);
                 $paketnik->dodaj($db);
             }
             break;

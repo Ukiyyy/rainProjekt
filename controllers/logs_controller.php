@@ -29,5 +29,28 @@ class logs_controller {
             echo "neuspesno izbrisan paketnik";
         }
     }
+    public function zgodovina()
+    {
+        if ($_POST["paketnikId"] != "") {
+            $paketnikId = $_POST["paketnikId"];
+            $url = 'http://localhost/rainPro/api.php/paketnik/zgodovina?paketnikId=' . urlencode($paketnikId);
+
+            $result = file_get_contents($url);
+            if ($result === FALSE) {
+                die();
+            }
+
+            $results = json_decode($result, true);
+
+            if ($results === NULL) {
+                echo "Error: Failed to decode API response.";
+                die();
+            }
+
+            require_once('views/paketnik/zgodovinaPaketnik.php');
+        } else {
+            echo "neuspesno izbrisan paketnik";
+        }
+    }
 }
 ?>

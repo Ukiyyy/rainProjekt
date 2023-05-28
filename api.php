@@ -5,6 +5,8 @@ include "models/paketnik.php";
 include "models/logs.php";
 
 
+
+
 $method = $_SERVER["REQUEST_METHOD"];
 
 if(isset($_SERVER['PATH_INFO']))
@@ -25,6 +27,26 @@ if(isset($request[0])&&($request[0]=='logs')){
                 //$paketnikId = $input["paketnikId"];
                 $logs->odkleni($db);
             }
+            if (isset($request[1]) && $request[1] == 'zgodovina') {
+                $paketnikId = $_GET['paketnikId'];
+                $results = array();
+
+                $query = "SELECT id, date, userid, paketnikid FROM logs WHERE paketnikid = '$paketnikId'";
+                $result = mysqli_query($db, $query);
+
+                if ($result) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $results[] = $row;
+                    }
+                } else {
+                    echo "Error: Failed to retrieve logs from the database.";
+                    die();
+                }
+
+                header('Content-Type: application/json');
+                echo json_encode($results);
+            }
+
     }
 }
 if(isset($request[0])&&($request[0]=='user')){
@@ -82,7 +104,8 @@ if(isset($request[0])&&($request[0]=='paketnik')) {
             if(isset($request[1]) && $request[1] == 'zgodovina') {
                 $paketnikId = $_GET['paketnikId'];
                 $results = Paketnik::zgo($paketnikId, $db);
-                require_once ('views/paketnik/zgodovinaPaketnik.php');
+                header('Content-Type: application/json');
+                echo json_encode($results);
             }
             else if(isset($input) && isset($request[1]) && $request[1] == 'odkleni') {
                 $input_data = json_decode(file_get_contents('php://input'), true);

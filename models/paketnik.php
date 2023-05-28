@@ -76,20 +76,35 @@ class Paketnik
     public function odkleni($paketnikId, $db)
     {
         $userId = $_SESSION['user_id'];
-        $id = $this->id;
-        $date = date("Y-m-d h:i:s");
 
-        // Insert a new row into the logs table
-        $qs = "INSERT INTO logs (id,date,userId, paketnikid) VALUES (NULL, '2000:05:03',2,3)";
-        //$qs = "INSERT INTO logs (id,date,userId, paketnikid) VALUES ($id,'$date''$userId', '$paketnikId')";
+        // Check if the user has access to unlock the paketnik
+        $qs = "SELECT * FROM user_paketnik WHERE userid = '$userId' AND paketnikid = '$paketnikId' AND acces = 1";
         $result = mysqli_query($db, $qs);
 
-        if (mysqli_error($db)) {
-            var_dump(mysqli_error($db));
-            exit();
+        if (mysqli_num_rows($result) == 0) {
+            echo "Nimate dostopa do odklepanja tega paketnika";
+            return;
+        }
+        /*
+        // Unlock the paketnik
+        $qs = "UPDATE paketnik SET zaklenjen = 0 WHERE paketnikid = '$paketnikId'";
+        $result = mysqli_query($db, $qs);
+
+        if (!$result) {
+            echo "Napaka pri odklepanju paketnika";
+            return;
+        }
+        */
+        // Insert a new row into the logs table
+        $qs = "INSERT INTO logs (userid, paketnikid) VALUES ('$userId', '$paketnikId')";
+        $result = mysqli_query($db, $qs);
+
+        if (!$result) {
+            echo "Napaka pri zapisovanju v dnevnik";
+            return;
         }
 
-        $this->id = mysqli_insert_id($db);
+        echo "Paketnik uspešno odklenjen";
     }
     public function zgo($paketnikId, $db)
     {

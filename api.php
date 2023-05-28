@@ -72,7 +72,24 @@ if(isset($request[0])&&($request[0]=='paketnik')) {
                 $paketnik = new paketnik($input["userid"],$input["paketnikId"],0);
                 $paketnik->dodaj($db);
             }
-            break;
+            if(isset($input) && isset($request[1]) && $request[1] == 'posodi') {
+                $paketnikId = $input["paketnikId"];
+                $imePosojenemu = $input["uporabnikId"];
+                $loggedInUserId = $_SESSION["username"];
+
+                $query = "SELECT * FROM paketnik WHERE id = '$paketnikId' AND userid = '$loggedInUserId'";
+                $result = mysqli_query($db, $query);
+
+                if (mysqli_num_rows($result) == 0) {
+                    echo "Napaka: Paketnik ni v lasti prijavljenega uporabnika.";
+                    die();
+                } else {
+                    echo("neki");
+                    Paketnik::posodi($imePosojenemu, $db, $paketnikId);
+                }
+            }
+
+                break;
         case 'PUT':
             parse_str(file_get_contents('php://input'), $input);
             if(isset($input) && isset($request[1]) && $request[1] == 'spremeni') {
@@ -81,12 +98,6 @@ if(isset($request[0])&&($request[0]=='paketnik')) {
                 Paketnik::spremeni($novoIme,$db,$paketnikId);
             }
 
-            parse_str(file_get_contents('php://input'), $input);
-            if(isset($input) && isset($request[1]) && $request[1] == 'posodi') {
-                $paketnikId = $input["paketnikId"];
-                $novoIme = $input["uporabnikId"];
-                Paketnik::posodi($novoIme,$db,$paketnikId);
-            }
             break;
         case 'GET':
             parse_str(file_get_contents('php://input'), $input);

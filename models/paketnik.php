@@ -61,10 +61,11 @@ class Paketnik
 
     public function posodi($idUser, $db, $idPaketnik)
     {
+        $id = this->$id;
         //$paketnikId = $_POST["paketnikId"];
 
-        // Update the name of the Paketnik in the database
-        $qs = "UPDATE user_paketnik SET owner = '1' WHERE name = '$idUser'";
+        $qs = "INSERT INTO paketnik (id,name,userid) VALUES ($id,'$idPaketnik', '$idUser')";
+        //$qs = "UPDATE user_paketnik SET owner = '1' WHERE name = '$idUser'";
 
         if (mysqli_query($db, $qs)) {
             echo "User '$idUser' uspešno dobil praviec";

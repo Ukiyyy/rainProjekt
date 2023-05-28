@@ -100,7 +100,7 @@ class paketnik_controller {
             $options = array(
                 'http' => array(
                     'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-                    'method' => 'PUT',
+                    'method' => 'POST',
                     'content' => http_build_query($data)
                 )
             );

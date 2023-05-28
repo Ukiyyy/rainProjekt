@@ -106,6 +106,7 @@ class Paketnik
 
         echo "Paketnik uspešno odklenjen";
     }
+    /*
     public function zgo($paketnikId, $db)
     {
         $qs = "SELECT * FROM logs WHERE paketnikid = '$paketnikId'";
@@ -124,6 +125,6 @@ class Paketnik
 
         return $rows;
     }
-
+    */
 
 }

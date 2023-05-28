@@ -4,16 +4,14 @@
         <thead>
         <tr>
             <th>ID uporabnika</th>
-            <th>Ime uporabnika</th>
-            <th>Datum in čas</th>
+            <th>Datum</th>
         </tr>
         </thead>
         <tbody>
         <?php foreach ($results as $log): ?>
             <tr>
                 <td><?php echo $log['userid']; ?></td>
-                <td><?php echo $log['ime']; ?></td>
-                <td><?php echo $log['datetime']; ?></td>
+                <td><?php echo $log['date']; ?></td>
             </tr>
         <?php endforeach; ?>
         </tbody>

@@ -27,23 +27,12 @@ if(isset($request[0])&&($request[0]=='logs')){
                 //$paketnikId = $input["paketnikId"];
                 $logs->odkleni($db);
             }
+            break;
+        case 'GET':
+            parse_str(file_get_contents('php://input'), $input);
             if (isset($request[1]) && $request[1] == 'zgodovina') {
-                $paketnikId = $_GET['paketnikId'];
-                $results = array();
-
-                $query = "SELECT id, date, userid, paketnikid FROM logs WHERE paketnikid = '$paketnikId'";
-                $result = mysqli_query($db, $query);
-
-                if ($result) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        $results[] = $row;
-                    }
-                } else {
-                    echo "Error: Failed to retrieve logs from the database.";
-                    die();
-                }
-
-                header('Content-Type: application/json');
+                $paketnikId = $input["paketnikId"];
+                $results=Logs::odklepi($db,$paketnikId);
                 echo json_encode($results);
             }
 

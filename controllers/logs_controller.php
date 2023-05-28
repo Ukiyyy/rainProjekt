@@ -33,9 +33,18 @@ class logs_controller {
     {
         if ($_POST["paketnikId"] != "") {
             $paketnikId = $_POST["paketnikId"];
-            $url = 'http://localhost/rainPro/api.php/paketnik/zgodovina?paketnikId=' . urlencode($paketnikId);
+            $url = 'http://localhost/rainPro/api.php/logs/zgodovina?paketnikId=';
+            $data = array('paketnikId' => "530");
 
-            $result = file_get_contents($url);
+            $options = array(
+                'http' => array(
+                    'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+                    'method' => 'GET',
+                    'content' => http_build_query($data)
+                )
+            );
+            $context = stream_context_create($options);
+            $result = file_get_contents($url, false, $context);
             if ($result === FALSE) {
                 die();
             }
@@ -43,6 +52,7 @@ class logs_controller {
             $results = json_decode($result, true);
 
             if ($results === NULL) {
+                echo $result;
                 echo "Error: Failed to decode API response.";
                 die();
             }
@@ -52,5 +62,6 @@ class logs_controller {
             echo "neuspesno izbrisan paketnik";
         }
     }
+
 }
 ?>

@@ -59,18 +59,20 @@ class Paketnik
 
     }
 
-    public function posodi($idUser, $db, $idPaketnik)
+    public function posodi($uporabnikId, $db, $idPaketnik)
     {
-        //$paketnikId = $_POST["paketnikId"];
+        $id = $this->id;
+        $paketnikId = $this->paketnikId;
 
-        $qs = "INSERT INTO paketnik (id,name,userid) VALUES (0,'$idPaketnik', '$idUser')";
-        //$qs = "UPDATE user_paketnik SET owner = '1' WHERE name = '$idUser'";
+        $qs = "INSERT INTO paketnik (id,name,userid) VALUES ($id,'$paketnikId', '$uporabnikId')";
+        $result = mysqli_query($db, $qs);
 
-        if (mysqli_query($db, $qs)) {
-            echo "User '$idUser' uspešno dobil praviec";
-        } else {
-            echo "Napaka";
+        if (mysqli_error($db)) {
+            var_dump(mysqli_error($db));
+            exit();
         }
+
+        $this->id = mysqli_insert_id($db);
 
     }
     public function odkleni($paketnikId, $db)

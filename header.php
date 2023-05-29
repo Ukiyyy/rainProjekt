@@ -33,7 +33,6 @@ $_SESSION['LAST_ACTIVITY'] = time();
                 <li><a class="nav-link" href="index.php?controller=paketnik&action=dodajPaketnik">Dodaj</a></li>
                 <li><a class="nav-link" href="index.php?controller=paketnik&action=zbrisiPaketnik">Izbrisi</a></li>
                 <li><a class="nav-link" href="index.php?controller=paketnik&action=spremeniIme">Spremeni ime</a>
-                <li><a class="nav-link" href="index.php?controller=logs&action=odkleni">Odkleni</a></li>
                 <li><a class="nav-link" href="index.php?controller=paketnik&action=posodiKljuc">Posodi kljuc</a></li>
             </ul>
         </ul>

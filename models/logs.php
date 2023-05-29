@@ -34,9 +34,16 @@ class Logs
 
         $this->id = mysqli_insert_id($db);
     }
-    public function odklepi($db, $paketnikId)
+    public static function zgodovina($db, $user)
     {
-        $qs = "SELECT id, date, userid, paketnikid FROM logs WHERE paketnikid = '$paketnikId'";
+        $qs = "SELECT logs.id, logs.date, logs.userid, logs.paketnikid, user.username, paketnik.name
+       FROM logs
+       INNER JOIN user ON logs.userid = user.id
+       INNER JOIN paketnik ON logs.paketnikid = paketnik.id
+       WHERE user.id = $user";
+
+
+
         $result = mysqli_query($db, $qs);
 
         if (!$result) {

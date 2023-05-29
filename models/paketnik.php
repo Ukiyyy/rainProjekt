@@ -59,22 +59,40 @@ class Paketnik
 
     }
 
-    public function posodi($uporabnikId, $db, $idPaketnik)
+    public function userji($db, $uid, $paketnikId)
+    {
+        //$uid = $_SESSION["USER_ID"];
+        //$userid = $this->userid;
+        $query = "SELECT * FROM paketnik WHERE userid = '$uid' AND name = '$paketnikId';";
+        $res = $db->query($query);
+        $users = array();
+        while ($u = $res->fetch_object()) {
+            array_push($users, $u);
+        }
+        return $users;
+    }
+    public function posodi($uporabnikId, $db, $paketnikId)
     {
         $id = $this->id;
         $paketnikId = $this->paketnikId;
+        $userid = $this->userid;
 
-        $qs = "INSERT INTO paketnik (id,name,userid) VALUES ($id,'$paketnikId', '$uporabnikId')";
-        $result = mysqli_query($db, $qs);
+        $us = $this->userji($db, $userid, $paketnikId);
+        foreach ($us as $u) {
+            if($userid == $u->userid) {
+                $qs = "INSERT INTO paketnik (id,name,userid) VALUES ($id,'$paketnikId', '$uporabnikId')";
+                $result = mysqli_query($db, $qs);
 
-        if (mysqli_error($db)) {
-            var_dump(mysqli_error($db));
-            exit();
+                if (mysqli_error($db)) {
+                    var_dump(mysqli_error($db));
+                    exit();
+                }
+
+                $this->id = mysqli_insert_id($db);
+            }
         }
-
-        $this->id = mysqli_insert_id($db);
-
     }
+
     public function odkleni($paketnikId, $db)
     {
         $userId = $_SESSION['user_id'];

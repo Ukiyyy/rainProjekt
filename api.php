@@ -75,11 +75,11 @@ if(isset($request[0])&&($request[0]=='paketnik')) {
             if(isset($input) && isset($request[1]) && $request[1] == 'posodi') {
                 $paketnikId = $input["paketnikId"];
                 $imePosojenemu = $input["uporabnikId"];
-                $loggedInUserId = $_SESSION["username"];
+                $loggedInUserId = $_SESSION["USER_ID"];
 
                 $query = "SELECT userid FROM paketnik WHERE name = '$paketnikId'";
                 $result = mysqli_query($db, $query);
-
+/*
                 if ($result) {
                     if (mysqli_num_rows($result) > 0) {
                         // Fetch the value from the result set
@@ -91,11 +91,16 @@ if(isset($request[0])&&($request[0]=='paketnik')) {
                         }
                     }
                 }
+
+
                 else
                 {
                     echo "Napaka: Paketnik ni v lasti prijavljenega uporabnika.";
                     die();
                 }
+*/
+
+                Paketnik::posodi($imePosojenemu, $db, $paketnikId);
             }
 
                 break;

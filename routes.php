@@ -13,7 +13,7 @@ function call($controller, $action) {
 $controllers = array('strani' => ['index','napaka'],
     'user' => ['prijava', 'odjava','registracija','shrani','dodaj'],
     'paketnik' => ['zgo', 'dodajPaketnik', 'shrani', 'zbrisi', 'zbrisiPaketnik', 'spremeniIme','spremeniImePaketnik','spremeni','posodiKljuc','posodi','zgo','zgodovina'],
-    'logs' => ['odkleni', 'odkleniPaketnik','zgodovina']);
+    'logs' => ['odkleni', 'odkleniPaketnik','zgodovina','zgo']);
 
 
 

@@ -29,7 +29,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
 
             ?>
             <ul class="navbar-nav ms-auto">
-                <li><a class="nav-link" href="index.php?controller=paketnik&action=zgo">Zgodovina</a></li>
+                <li><a class="nav-link" href="index.php?controller=logs&action=zgodovina">Zgodovina</a></li>
                 <li><a class="nav-link" href="index.php?controller=paketnik&action=dodajPaketnik">Dodaj</a></li>
                 <li><a class="nav-link" href="index.php?controller=paketnik&action=zbrisiPaketnik">Izbrisi</a></li>
                 <li><a class="nav-link" href="index.php?controller=paketnik&action=spremeniIme">Spremeni ime</a>

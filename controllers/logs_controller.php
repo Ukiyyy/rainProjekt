@@ -29,39 +29,35 @@ class logs_controller {
             echo "neuspesno izbrisan paketnik";
         }
     }
+    public function zgo(){
+        require_once('views/paketnik/getIdZgoPaketnik.php');
+    }
     public function zgodovina()
     {
-        if ($_POST["paketnikId"] != "") {
-            $paketnikId = $_POST["paketnikId"];
-            $url = 'http://localhost/rainPro/api.php/logs/zgodovina?paketnikId=';
-            $data = array('paketnikId' => "530");
+        $url = 'http://localhost/rainPro/api.php/logs/zgodovina?paketnikId=';
+        $data = array('userid' => $_SESSION["USER_ID"]);
 
-            $options = array(
-                'http' => array(
-                    'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-                    'method' => 'GET',
-                    'content' => http_build_query($data)
-                )
-            );
-            $context = stream_context_create($options);
-            $result = file_get_contents($url, false, $context);
-            if ($result === FALSE) {
-                die();
-            }
-
-            $results = json_decode($result, true);
-
-            if ($results === NULL) {
-                echo $result;
-                echo "Error: Failed to decode API response.";
-                die();
-            }
-
-            require_once('views/paketnik/zgodovinaPaketnik.php');
-        } else {
-            echo "neuspesno izbrisan paketnik";
+        $options = array(
+            'http' => array(
+                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method' => 'GET',
+                'content' => http_build_query($data)
+            )
+        );
+        $context = stream_context_create($options);
+        $result = file_get_contents($url, false, $context);
+        if ($result === FALSE) {
+            die();
         }
-    }
 
+        $results = json_decode($result, true);
+
+        if ($results === NULL) {
+            echo "Error: Failed to decode API response.";
+            die();
+        }
+
+        require_once('views/paketnik/zgodovinaPaketnik.php');
+    }
 }
 ?>

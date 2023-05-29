@@ -31,8 +31,8 @@ if(isset($request[0])&&($request[0]=='logs')){
         case 'GET':
             parse_str(file_get_contents('php://input'), $input);
             if (isset($request[1]) && $request[1] == 'zgodovina') {
-                $paketnikId = $input["paketnikId"];
-                $results=Logs::odklepi($db,$paketnikId);
+                $paketnikId = $input["userid"];
+                $results=Logs::zgodovina($db,$paketnikId);
                 echo json_encode($results);
             }
 

@@ -141,8 +141,5 @@ class paketnik_controller {
             echo "neuspesno izbrisan paketnik";
         }
     }
-    public function zgo(){
-        require_once ('views/paketnik/getIdZgoPaketnik.php');
-    }
 }
 ?>

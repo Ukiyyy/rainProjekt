@@ -1,9 +1,9 @@
 <?php
-include 'models/paketnik.php';
+include 'backend/models/paketnik.php';
 
 class paketnik_controller {
     public function dodajPaketnik() {
-        require_once('views/paketnik/dodajPaketnik.php');
+        require_once('frontend/views/paketnik/dodajPaketnik.php');
     }
     public function shrani() {
         if($_POST["paketnikId"]!="") {
@@ -22,14 +22,14 @@ class paketnik_controller {
             if ($result === FALSE) {
                 die();
             }
-            require_once('views/strani/uspesno.php');
+            require_once('frontend/views/strani/uspesno.php');
         }
         else{
             echo "neuspesno vnesen paketnik";
         }
     }
     public function zbrisiPaketnik() {
-        require_once ('views/paketnik/zbrisiPaketnik.php');
+        require_once('frontend/views/paketnik/zbrisiPaketnik.php');
     }
     public function zbrisi() {
         if($_POST["paketnikId"]!="") {
@@ -48,7 +48,7 @@ class paketnik_controller {
             if ($result === FALSE) {
                 die();
             }
-            require_once('views/strani/uspesno.php');
+            require_once('frontend/views/strani/uspesno.php');
         }
         else{
             echo "neuspesno izbrisan paketnik";
@@ -56,7 +56,7 @@ class paketnik_controller {
     }
 
     public function spremeniIme() {
-        require_once ('views/paketnik/spremeniImePaketnik.php');
+        require_once('frontend/views/paketnik/spremeniImePaketnik.php');
     }
 
     public function spremeni()
@@ -78,7 +78,7 @@ class paketnik_controller {
             if ($result === FALSE) {
                 die();
             }
-            require_once('views/strani/uspesno.php');
+            require_once('frontend/views/strani/uspesno.php');
         }
         else{
             echo "neuspesna spremenitev imena paketnik";
@@ -87,7 +87,7 @@ class paketnik_controller {
 
 
     public function posodiKljuc() {
-        require_once ('views/paketnik/posodiKljuc.php');
+        require_once('frontend/views/paketnik/posodiKljuc.php');
     }
 
     public function posodi()
@@ -109,14 +109,14 @@ class paketnik_controller {
             if ($result === FALSE) {
                 die();
             }
-            require_once('views/strani/uspesno.php');
+            require_once('frontend/views/strani/uspesno.php');
         }
         else{
             echo "neuspesna spremenitev imena paketnik";
         }
     }
     public function odkleni(){
-        require_once('views/logs/odkleniPaketnik.php');
+        require_once('frontend/views/logs/odkleniPaketnik.php');
     }
     public function odkleniPaketnik()
     {
@@ -136,7 +136,7 @@ class paketnik_controller {
             if ($result === FALSE) {
                 die();
             }
-            require_once('views/strani/uspesno.php');
+            require_once('frontend/views/strani/uspesno.php');
         } else {
             echo "neuspesno izbrisan paketnik";
         }

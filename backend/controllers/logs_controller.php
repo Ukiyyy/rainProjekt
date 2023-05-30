@@ -1,10 +1,10 @@
 <?php
-include 'models/logs.php';
+include 'backend/models/logs.php';
 
 class logs_controller {
 
     public function odkleni(){
-        require_once('views/logs/odkleniPaketnik.php');
+        require_once('frontend/views/logs/odkleniPaketnik.php');
     }
     public function odkleniPaketnik()
     {
@@ -24,13 +24,13 @@ class logs_controller {
             if ($result === FALSE) {
                 die();
             }
-            require_once('views/strani/uspesno.php');
+            require_once('frontend/views/strani/uspesno.php');
         } else {
             echo "neuspesno izbrisan paketnik";
         }
     }
     public function zgo(){
-        require_once('views/paketnik/getIdZgoPaketnik.php');
+        require_once('frontend/views/paketnik/getIdZgoPaketnik.php');
     }
     public function zgodovina()
     {
@@ -57,7 +57,7 @@ class logs_controller {
             die();
         }
 
-        require_once('views/paketnik/zgodovinaPaketnik.php');
+        require_once('frontend/views/paketnik/zgodovinaPaketnik.php');
     }
 }
 ?>

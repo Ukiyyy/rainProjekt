@@ -5,12 +5,12 @@ class strani_controller {
 
     public function index() {
 
-        require_once('views/strani/index.php');
+        require_once('frontend/views/strani/index.php');
     }
 
 
     public function napaka() {
-        require_once('views/strani/napaka.php');
+        require_once('frontend/views/strani/napaka.php');
     }
 
 }

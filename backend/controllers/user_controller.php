@@ -1,9 +1,9 @@
 <?php
-include "models/user.php";
+include "backend/models/user.php";
 $uid = 2;
 class user_controller {
     public function registracija() {
-        require_once('views/user/registracija.php');
+        require_once('frontend/views/user/registracija.php');
     }
     public function shrani() {
         if($_POST["username"]!=""&&$_POST["password"]!=""&&$_POST["email"]!="") {
@@ -22,7 +22,7 @@ class user_controller {
             if ($result === FALSE) {
                 die();
             }
-            require_once('views/user/prijava.php');
+            require_once('frontend/views/user/prijava.php');
         }
         else{
             echo "neuspesna registracija";
@@ -57,10 +57,10 @@ class user_controller {
                 $_SESSION["USER"] = $uporabnik;
                 header("Location: index.php");
             }else{
-                require_once('views/user/prijava.php');
+                require_once('frontend/views/user/prijava.php');
             }
         }else{
-            require_once('views/user/prijava.php');
+            require_once('frontend/views/user/prijava.php');
         }
     }
 

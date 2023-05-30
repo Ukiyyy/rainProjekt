@@ -1,8 +1,8 @@
 <?php
 function call($controller, $action) {
 
-    require_once('controllers/' . $controller . '_controller.php');
-    require_once('models/' . $controller . '.php');
+    require_once('backend/controllers/' . $controller . '_controller.php');
+    require_once('backend/models/' . $controller . '.php');
 
     $o=$controller."_controller";
     $controller=new $o;

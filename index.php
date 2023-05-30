@@ -9,5 +9,5 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
     //$action = 'prikaziVse';
 }
 
-require_once('views/layout.php');
+require_once('frontend/views/layout.php');
 include_once('footer.php');
